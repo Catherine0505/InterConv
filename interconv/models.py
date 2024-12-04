@@ -3,7 +3,7 @@ import torch.nn as nn
 
 import einops
 
-from interconv.model import layers
+import layers
 
 class SimpleUNet(nn.Module): 
     def __init__(self,
