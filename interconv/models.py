@@ -3,7 +3,7 @@ import torch.nn as nn
 
 import einops
 
-import layers
+import interconv.layers as layers
 
 class SimpleUNet(nn.Module): 
     def __init__(self,
@@ -33,7 +33,6 @@ class SimpleUNet(nn.Module):
             lst.append(nn.BatchNorm2d(features[0]))
         lst.append(nn.PReLU())
         self.init_conv = nn.Sequential(*lst)
-        print(type(self.init_conv))
         
         self.downs = nn.ModuleList()
         self.ups = nn.ModuleList()

@@ -1,7 +1,8 @@
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
-import interconv.loss.utils as utils
+
+from .utils import assert_in_range
 
 import warnings
 
@@ -29,8 +30,8 @@ class MeanDice(nn.Module):
             y_pred = nn.Softmax(dim = self.dim)(y_pred)
 
         # check that all data is in [0, 1]
-        utils.assert_in_range(y_pred, [0, 1], 'y_pred')
-        utils.assert_in_range(y_true, [0, 1], 'y_true')
+        assert_in_range(y_pred, [0, 1], 'y_pred')
+        assert_in_range(y_true, [0, 1], 'y_true')
 
         # decide which dimensions to sum over.
         # in the minimum-dice loss, we sum over all dimensions
